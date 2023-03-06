@@ -9,6 +9,7 @@ export PROJECT_ROOT ?= ${CURDIR}
 export OUTPUT_ROOT ?= ${PROJECT_ROOT}/build
 export TOOLS_ROOT ?= ${PROJECT_ROOT}/tools
 export PREFIX ?= ${PROJECT_ROOT}/images
+export ARCHIVE_ROOT ?= ${PROJECT_ROOT}/downloads
 
 export INSTALL_ROOT ?= ${PREFIX}$(if ${BUILD_TYPE},/${BUILD_TYPE},)
 export BUILD_ROOT ?= ${OUTPUT_ROOT}$(if ${BUILD_TYPE},/${BUILD_TYPE},)
@@ -33,7 +34,7 @@ distclean:
 	-${RM} -r ${BUILD_ROOT} ${INSTALL_ROOT}
 
 realclean:
-	-${RM} -r ${OUTPUT_ROOT} ${PREFIX} 
+	-${RM} -r ${OUTPUT_ROOT} ${PREFIX} ${ARCHIVE_ROOT}/
 
 info:
 	@echo "BUILD_TYPE=${BUILD_TYPE}"
