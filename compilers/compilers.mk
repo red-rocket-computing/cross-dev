@@ -1,5 +1,4 @@
 
-targets: gcc-arm-embedded
+include ${TOOLS_ROOT}/makefiles/tree.mk
 
-include ${PROJECT_ROOT}/tools/makefiles/tree.mk
-
+target: cross-ng-arm-none-eabi
