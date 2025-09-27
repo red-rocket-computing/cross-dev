@@ -29,7 +29,9 @@ clean:
 ${CURDIR}/crosstool-ng/bootstrap:
 	@echo CLONING https://github.com/crosstool-ng/crosstool-ng
 	git clone https://github.com/crosstool-ng/crosstool-ng
-
+	@echo PATCHING picolibc
+	$(INSTALL) -m 660 ${SOURCE_DIR}/0000-Revert-include-Remove-BSD-threads.h-file.patch ${CURDIR}/crosstool-ng/packages/picolibc/1.8.10/0000-Revert-include-Remove-BSD-threads.h-file.patch
+	
 ${CURDIR}/crosstool-ng/configure: ${CURDIR}/crosstool-ng/bootstrap
 	@echo BOOTSTRAPING ${@}
 	cd ${CURDIR}/crosstool-ng && ./bootstrap
@@ -50,8 +52,8 @@ ${CURDIR}/${TOOLCHAIN_NAME}/bin/arm-none-eabi-ct-ng.config: ${CURDIR}/.config ${
 	@echo BUILDING ${TOOLCHAIN_NAME}
 	+[ -d $@ ] || mkdir -p ${PROJECT_ROOT}/downloads
 	${CURDIR}/crosstool-ng/ct-ng build
-	$(INSTALL) -m 660 ${SOURCE_DIR}/picolibc.specs ${CURDIR}/${TOOLCHAIN_NAME}/arm-none-eabi/lib/picolibc.specs
-	$(INSTALL) -m 660 ${SOURCE_DIR}/picolibcpp.specs ${CURDIR}/${TOOLCHAIN_NAME}/arm-none-eabi/lib/picolibcpp.specs
+#	$(INSTALL) -m 660 ${SOURCE_DIR}/picolibc.specs ${CURDIR}/${TOOLCHAIN_NAME}/arm-none-eabi/lib/picolibc.specs
+#	$(INSTALL) -m 660 ${SOURCE_DIR}/picolibcpp.specs ${CURDIR}/${TOOLCHAIN_NAME}/arm-none-eabi/lib/picolibcpp.specs
 	mv ${CURDIR}/${TOOLCHAIN_NAME}/build.log.bz2 ${CURDIR}
 
 ${PREFIX}/${TOOLCHAIN_NAME}.tar.xz: ${CURDIR}/${TOOLCHAIN_NAME}/bin/arm-none-eabi-ct-ng.config
