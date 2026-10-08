@@ -13,6 +13,7 @@ export ARCHIVE_ROOT ?= ${PROJECT_ROOT}/downloads
 
 export INSTALL_ROOT ?= ${PREFIX}$(if ${BUILD_TYPE},/${BUILD_TYPE},)
 export BUILD_ROOT ?= ${OUTPUT_ROOT}$(if ${BUILD_TYPE},/${BUILD_TYPE},)
+unexport LD_LIBRARY_PATH
 
 ifeq (${V},)
 SILENT=--silent

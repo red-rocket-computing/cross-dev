@@ -29,8 +29,8 @@ clean:
 ${CURDIR}/crosstool-ng/bootstrap:
 	@echo CLONING https://github.com/crosstool-ng/crosstool-ng
 	git clone https://github.com/crosstool-ng/crosstool-ng
-	@echo PATCHING picolibc
-	$(INSTALL) -m 660 ${SOURCE_DIR}/0000-Revert-include-Remove-BSD-threads.h-file.patch ${CURDIR}/crosstool-ng/packages/picolibc/1.8.10/0000-Revert-include-Remove-BSD-threads.h-file.patch
+#	@echo PATCHING picolibc
+#	$(INSTALL) -m 660 ${SOURCE_DIR}/0000-Revert-include-Remove-BSD-threads.h-file.patch ${CURDIR}/crosstool-ng/packages/picolibc/1.8.10/0000-Revert-include-Remove-BSD-threads.h-file.patch
 	
 ${CURDIR}/crosstool-ng/configure: ${CURDIR}/crosstool-ng/bootstrap
 	@echo BOOTSTRAPING ${@}
